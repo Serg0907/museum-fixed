@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: "Forum";
+    src: url("./assets/fonts/Forum-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("./assets/fonts/Roboto-Thin.ttf");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("./assets/fonts/Roboto-Light.ttf");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: "Roboto";
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 200;
+    line-height: normal;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.d-flex {
+    display: flex;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Forum";
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    font-family: "Roboto";
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+
+
+/* Header */
+
+.header {
+    background: #030303;
+}
+
+.header-container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-list {
+    font-family: "Roboto";
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    color: #ffffff;
+    padding: 62px 0;
+}
+
+.nav-list .nav-item:not(:first-child) {
+    margin-left: 56px;
+}
+
+.nav-list a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 100;
+    letter-spacing: 2px;
+}
+
+.logo {
+    font-family: "Forum";
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: 5px;
+}
+
+.logo img {
+    margin-right: 12px;
+}
+
+@media screen and (min-width: 1025px) {
+    .toggle {
+        display: none;
+    }
+}
+
+/* Header */
+
+/* Welcome */
+.welcome {
+    background: #000000;
+}
+
+.welcome h1 {
+    color: #ffffff;
+    font-size: 80px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding-bottom: 25px;
+    line-height: 1.11em;
+}
+
+.welcome .subtitle {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: 2px;
+    padding-bottom: 75px;
+}
+
+.welcome button {
+    background: #710707;
+    letter-spacing: 2px;
+    color: #ffffff;
+    padding: 0 66px;
+    min-height: 75px;
+    border-radius: 10px;
+    font-size: 22px;
+}
+
+.welcome .col-right {
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.welcome .col-left {
+    position: absolute;
+    padding-top: 150px;
+}
+
+/* Welcome */
