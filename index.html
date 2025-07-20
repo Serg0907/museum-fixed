@@ -13,7 +13,7 @@
     <header class="header">
         <div class="container header-container d-flex">
             <div class="logo">
-                <img src="./assets/img/logo.svg" alt="Лого">
+                <img src="./assets/img/logo.svg" alt="Logo">
                 <span class="logo">Louvre</span>
             </div>
             <nav class="nav">
@@ -43,18 +43,173 @@
                     <div class="d-flex">
                         <h1>Welcome<br>to the Louvre</h1>
                     </div>
+
                     <div class="subtitle">From the castle to the museum</div>
-                    <button class="ntn">Discover the Louvre</button>
+                    <a href="https://www.google.com/maps/@48.8618159,2.3366818,3a,75y,81.55h,73.4t/data=!3m7!1e1!3m5!1sAF1QipOVxZQuSy3Bx9T_HpH_7FtBHDTXvI6SF-A10ocT!2e10!3e12!7i5472!8i2736"
+                        target="_blank">
+                        <button class="btn">Discover the Louvre</button>
+                    </a>
+
                 </div>
+
                 <div class="col-right d-flex">
-                    <img src="./assets/img/welcome-slider/1.jpg" alt="welcome">
+                    <div class="wrapper">
+                        <img src="./assets/img/welcome-slider/1.jpg" alt="welcome">
+                    </div>
+
+                    <div class="navigation d-flex align-items-center justify-space-between">
+                        <div class="d-flex counts">
+                            <span class="active">01</span>
+                            <span class="separator">|</span>
+                            <span class="count">05</span>
+                        </div>
+
+                        <div class="d-flex dots">
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+
+                        <div class="d-flex arrows">
+                            <div class="d-flex align-items-center arrow arrow-left">
+                                <svg width="30" height="8" viewBox="0 0 30 8" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.72254 8C3.90173 6.31339 1.99422 5.08262 0 4.30769V3.69231C1.99422 2.89459 3.90173 1.66382 5.72254 0H7.23988C6.37283 1.4359 5.53468 2.52991 4.72543 3.28205H30V4.71795H4.72543C5.53468 5.47009 6.37283 6.5641 7.23988 8H5.72254Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+
+                            <div class="d-flex align-items-center arrow arrow-right">
+                                <svg width="30" height="8" viewBox="0 0 30 8" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M24.2775 1.97284e-06C26.0983 1.68661 28.0058 2.91738 30 3.69231L30 4.30769C28.0058 5.10541 26.0983 6.33618 24.2775 8L22.7601 8C23.6272 6.5641 24.4653 5.47009 25.2746 4.71795L3.48964e-07 4.71795L5.01636e-07 3.28205L25.2746 3.28205C24.4653 2.52992 23.6272 1.4359 22.7601 1.86378e-06L24.2775 1.97284e-06Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
 
         </section>
 
-        <section id="visiting">
+        <section id="visiting" class="visiting section-padding">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="border-bottom">Virtual tour</h2>
+                </div>
+
+                <div class="cards d-flex flex-wrap">
+
+                    <div class="item">
+                        <a href="https://www.google.com/maps/@48.8606882,2.3356791,3a,90y,328.36h,87.55t/data=!3m7!1e1!3m5!1sAF1QipMZ9YgnArbwEIbTDANeSQYFu9gNqpW_2Sv8FBvY!2e10!3e12!7i4352!8i1815"
+                            target="_blank">
+                            <div class="image">
+                                <img src="./assets/img/tour/1.jpg" alt="Royal Palace">
+                            </div>
+
+                            <div class="content">
+                                <h3 class="title">Royal Palace</h3>
+                                <div class="description">
+                                    <div class="row-1">360° Virtual Tour</div>
+                                    <div class="row-2">Google Street Panorama View</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="https://www.google.com/maps/@48.8563254,2.3352706,3a,75y,90t/data=!3m7!1e1!3m5!1sAF1QipNRj_CwP4coDMYdCHj6qHeBeJpI2VxU5BUsOX4F!2e10!3e12!7i11000!8i5500"
+                            target="_blank">
+                            <div class="image">
+                                <img src="./assets/img/tour/2.jpg" alt="Denon Wing">
+                            </div>
+
+                            <div class="content">
+                                <h3 class="title">Denon Wing</h3>
+                                <div class="description">
+                                    <div class="row-1">360° Virtual Tour</div>
+                                    <div class="row-2">Google Street Panorama View</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="https://www.google.com/maps/@48.8601723,2.3395439,3a,88.4y,322.04h,84.25t/data=!3m7!1e1!3m5!1sAF1QipNMZGQuEA-pAUvIG_eP_2f3gWTKZEJ6XLVJ-Pgb!2e10!3e12!7i10240!8i5120"
+                            target="_blank">
+                            <div class="image">
+                                <img src="./assets/img/tour/3.jpg" alt="Colonnade Perrault">
+                            </div>
+
+                            <div class="content">
+                                <h3 class="title">Colonnade Perrault</h3>
+                                <div class="description">
+                                    <div class="row-1">360° Virtual Tour</div>
+                                    <div class="row-2">Google Street Panorama View</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="https://www.google.com/maps/@48.860183,2.3356156,3a,90y,177.69h,95.61t/data=!3m7!1e1!3m5!1sAF1QipP7uFZnTITRe-7AEVAgHAfqiCL-03gvBHcYWgF3!2e10!3e12!7i5472!8i2736"
+                            target="_blank">
+                            <div class="image">
+                                <img src="./assets/img/tour/4.jpg" alt="Greek hall">
+                            </div>
+
+                            <div class="content">
+                                <h3 class="title">Greek hall</h3>
+                                <div class="description">
+                                    <div class="row-1">360° Virtual Tour</div>
+                                    <div class="row-2">Google Street Panorama View</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="https://www.google.com/maps/@48.8598788,2.3355157,3a,82.2y,7.53h,94t/data=!3m7!1e1!3m5!1sAF1QipO1wkUUbyzpPjj-OR0mR5etZJT-xl-40XK8rDQ3!2e10!3e12!7i10240!8i5120"
+                            target="_blank">
+                            <div class="image">
+                                <img src="./assets/img/tour/5.jpg" alt="Mona Lisa">
+                            </div>
+
+                            <div class="content">
+                                <h3 class="title">Mona Lisa</h3>
+                                <div class="description">
+                                    <div class="row-1">360° Virtual Tour</div>
+                                    <div class="row-2">Google Street Panorama View</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="https://www.google.com/maps/@48.8563254,2.3352706,3a,90y,21.26h,79.91t/data=!3m7!1e1!3m5!1sAF1QipPpGAowYatVyk3MMGnZAaQkYm2EUk-Dlca06SS5!2e10!3e12!7i11304!8i5652"
+                            target="_blank">
+                            <div class="image">
+                                <img src="./assets/img/tour/6.jpg" alt="Night Palace">
+                            </div>
+
+                            <div class="content">
+                                <h3 class="title">Night Palace</h3>
+                                <div class="description">
+                                    <div class="row-1">360° Virtual Tour</div>
+                                    <div class="row-2">Google Street Panorama View</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
         </section>
 
         <section id="explore">

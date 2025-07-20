@@ -40,13 +40,26 @@ body {
 }
 
 .container {
-    max-width: 1440px;
+    max-width: 1480px;
     margin: 0 auto;
-    display: flex;
+    padding: 0 20px;
+    /* display: flex; */
 }
 
 .d-flex {
     display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-space-between {
+    justify-content: space-between;
 }
 
 h1,
@@ -61,8 +74,27 @@ h6 {
     font-weight: 400;
 }
 
+h2 {
+    font-size: 80px;
+    color: #9D8665;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    ;
+}
+
+.border-bottom {
+    border-bottom: 3px solid #710707;
+    width: 100%;
+    padding-bottom: 26px;
+}
+
+.section-padding {
+    padding: 75px 0;
+}
+
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 button {
@@ -140,7 +172,7 @@ button {
     letter-spacing: 5px;
     text-transform: uppercase;
     padding-bottom: 25px;
-    line-height: 1.11em;
+    line-height: 1.12em;
 }
 
 .welcome .subtitle {
@@ -163,11 +195,147 @@ button {
 .welcome .col-right {
     width: 100%;
     justify-content: flex-end;
+    position: relative;
+    padding-bottom: 60px;
 }
 
 .welcome .col-left {
     position: absolute;
     padding-top: 150px;
+    z-index: 1;
+}
+
+.welcome .col-right .wrapper:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 310px;
+    height: 100%;
+    background: linear-gradient(90deg, black, transparent);
+}
+
+.welcome .wrapper {
+    position: relative;
+    font-size: 0;
+}
+
+.welcome .navigation {
+    position: absolute;
+    bottom: 0;
+    background: #000000;
+    right: 0;
+    max-width: 600px;
+    width: 100%;
+    min-height: 120px;
+    padding: 0 75px;
+}
+
+.welcome .counts {
+    font-size: 22px;
+    color: #ffffff;
+}
+
+.welcome .dots .dot {
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.welcome .dots .dot.active {
+    background: #D2B183;
+}
+
+.welcome .dots .dot:not(:last-child) {
+    margin-right: 25px;
+}
+
+.welcome .arrow {
+    cursor: pointer;
+    height: 30px;
+}
+
+.welcome .arrow-left {
+    margin-right: 10px;
+}
+
+.welcome .arrow-right {
+    margin-left: 10px;
+}
+
+.welcome .separator {
+    padding: 0 10px;
+}
+
+.welcome .dots {
+    margin-right: 5px;
 }
 
 /* Welcome */
+
+/* Visiting */
+
+.visiting {
+    padding-bottom: 0;
+}
+
+.visiting .title {
+    font-size: 32px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    transition: 300ms all;
+    margin-bottom: 11px;
+    width: 100%;
+    position: relative;
+}
+
+.visiting .title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    height: 2px;
+    background: #710707;
+    transition: 300ms all;
+}
+
+.visiting .description {
+    font-weight: 100;
+}
+
+.visiting .row-1 {
+    margin-bottom: 8px;
+}
+
+.visiting .row-2 {
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 21px;
+}
+
+.visiting .section-title {
+    margin-bottom: 75px;
+}
+
+.visiting .image {
+    padding-bottom: 25px;
+    font-size: 0;
+}
+
+.visiting .item:hover .title:after {
+    width: 100%;
+}
+
+.visiting .item {
+    width: calc(33.33333% - 60px);
+    margin: 0 30px 75px;
+}
+
+.visiting .cards {
+    margin: 0 -30px;
+}
+
+/* Visiting */
