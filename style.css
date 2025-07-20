@@ -85,7 +85,7 @@ h2 {
 .border-bottom {
     border-bottom: 3px solid #710707;
     width: 100%;
-    padding-bottom: 26px;
+    padding-bottom: 27px;
 }
 
 .section-padding {
@@ -97,14 +97,17 @@ a {
     color: inherit;
 }
 
-button {
+.btn {
     font-family: "Roboto";
     padding: 0;
     margin: 0;
     border: 0;
 }
 
-
+ul {
+    padding: 0;
+    margin: 0;
+}
 
 /* Header */
 
@@ -125,7 +128,7 @@ button {
     list-style: none;
     margin: 0;
     color: #ffffff;
-    padding: 62px 0;
+    padding: 61.5px 0;
 }
 
 .nav-list .nav-item:not(:first-child) {
@@ -179,15 +182,14 @@ button {
     color: #ffffff;
     font-size: 28px;
     letter-spacing: 2px;
-    padding-bottom: 75px;
+    padding-bottom: 99px;
 }
 
-.welcome button {
+.welcome .btn {
     background: #710707;
     letter-spacing: 2px;
     color: #ffffff;
-    padding: 0 66px;
-    min-height: 75px;
+    padding: 24px 66px;
     border-radius: 10px;
     font-size: 22px;
 }
@@ -339,3 +341,48 @@ button {
 }
 
 /* Visiting */
+
+/* Footer */
+
+footer {
+    background: #000000;
+}
+
+.footer-top {
+    border-bottom: 3px solid #666666;
+    padding-top: 84px;
+}
+
+footer .footer-col {
+    letter-spacing: 2px;
+    color: #ffffff;
+    font-weight: 100;
+    line-height: 22px;
+}
+
+footer .footer-link {
+    font-weight: 100;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.footer-main .links {
+    width: 100%;
+    padding-left: 140px;
+}
+
+footer .logo {
+    min-width: 200px;
+}
+
+footer .footer-list {
+    padding: 4px 0 0 0;
+}
+
+footer li.footer-item {
+    margin-bottom: 25px;
+    line-height: 26px;
+    width: 50%;
+}
+
+/* Footer */
