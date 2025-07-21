@@ -351,6 +351,7 @@ footer {
 .footer-top {
     border-bottom: 3px solid #666666;
     padding-top: 84px;
+    padding-bottom: 24px;
 }
 
 footer .footer-col {
@@ -379,10 +380,36 @@ footer .footer-list {
     padding: 4px 0 0 0;
 }
 
-footer li.footer-item {
+footer .footer-item {
     margin-bottom: 25px;
     line-height: 26px;
     width: 50%;
+}
+
+footer .social-item {
+    border: 1px solid #666666;
+    border-radius: 100px;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+}
+
+footer .social-item:not(:last-child) {
+    margin-right: 25px;
+}
+
+footer .social-item img {
+    width: 24px;
+    height: 24px;
+}
+
+footer .socials.d-flex {
+    align-items: flex-end;
+    padding-bottom: 31px;
+}
+
+footer .footer-bottom {
+    padding: 50px 0 52px;
 }
 
 /* Footer */
