@@ -26,10 +26,10 @@
                     <li class="nav-item"><a href="#contacts" class="nav-link">Contacts</a></li>
                 </ul>
             </nav>
-            <div class="toggle">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+            <div class="toggle d-flex">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
             </div>
         </div>
     </header>
@@ -210,19 +210,239 @@
                 </div>
         </section>
 
-        <section id="explore">
+        <section id="explore" class="explore section-padding">
+            <div class="container d-flex">
+                <div class="col-left">
+                    <div class="section-title">
+                        <h2 class="border-bottom">Picture explore</h2>
+                    </div>
+                    <div class="content">
+                        <p>Las Meninas is a 1656 painting by Diego Velázquez, the leading artist of the Spanish Golden
+                            Age.</p>
+                        <p>It was cleaned in 1984 to remove a "yellow veil" of dust that had gathered since the previous
+                            restoration in the 19th century.</p>
+                        <p>The cleaning provoked furious protests, not because the picture had been damaged in any way,
+                            but because it looked different.</p>
+                    </div>
+                </div>
+                <div class="col-right">
+                    <img src="./assets/img/explore.jpg" alt="Picture explore">
+                </div>
+
+            </div>
+
         </section>
 
-        <section id="video">
+        <section id="video" class="video section-padding">
+            <div class="container">
+                <div class="row d-flex">
+                    <div class="col-left">
+                        <div class="section-title">
+                            <h2>Video journey</h2>
+                        </div>
+                    </div>
+
+                    <div class="col-right">
+                        <div class="content">Enter and visit one of the most famous museums in the world and enjoy
+                            masterpieces such as Mona Lisa or Hammurabi's Code
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="player">
+                        <div class="wrapper">
+                            <img src="./assets/img/video/video.jpg" alt="Video journey">
+                            <button class="play-button"></button>
+
+                            <div class="panel d-flex justify-space-between align-items-center">
+                                <img src="./assets/img/video/play.svg" alt="play">
+                                <input type="range" value="40" min="0" max="100" step="1" class="progress range">
+                                <img src="./assets/img/video/volume.svg" alt="volume">
+                                <input type="range" value="40" min="0" max="100" step="1" class="volume range">
+                                <img src="./assets/img/video/fullscreen.svg" alt="fullscreen">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider">
+                        <div class="wrapper d-flex justify-space-between">
+                            <div class="item">
+                                <img src="./assets/img/video/poster_1.jpg" alt="video poster">
+                                <button class="play-button-item"></button>
+                            </div>
+
+                            <div class="item">
+                                <img src="./assets/img/video/poster_2.jpg" alt="video poster">
+                                <button class="play-button-item"></button>
+                            </div>
+
+                            <div class="item">
+                                <img src="./assets/img/video/poster_3.jpg" alt="video poster">
+                                <button class="play-button-item"></button>
+                            </div>
+                        </div>
+                        <div class="dots d-flex justify-content-center">
+                            <div class="arrow-prev"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="arrow-next"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="gallery">
+        <section id="gallery" class="gallery section-padding">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Art Gallery</h2>
+                </div>
+
+                <div class="gallery-items">
+                    <div class="item">
+                        <img src="./assets/img/galery/galery2.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery1.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery7.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery9.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery8.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery10.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery4.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery3.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery15.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery6.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery5.jpg" alt="gallery">
+                    </div>
+
+                    <div class="item">
+                        <img src="./assets/img/galery/galery12.jpg" alt="gallery">
+                    </div>
+
+
+
+                </div>
         </section>
 
-        <section id="tickets">
+        <section id="tickets" class="tickets section-padding">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="border-bottom">Buy tickets</h2>
+                </div>
+
+                <div class="content d-flex">
+                    <div class="col-left">
+                        <img src="./assets/img/tickets.jpg" alt="Buy tickets">
+                    </div>
+                    <div class="col-middle">
+                        <div class="col-title">Ticket Type</div>
+                        <div class="col-content d-flex">
+                            <label class="inner ">
+                                <input type="radio" checked="checked" name="radio">Permanent exhibition
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="inner">
+                                <input type="radio" name="radio">Temporary exhibition
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="inner">
+                                <input type="radio" name="radio">Combined Admission
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-right">
+                        <div class="col-title right">Amount</div>
+
+                        <div class="col-content d-flex">
+                            <div class="item">
+                                <div class="heading">Basic 18+</div>
+                                <div class="field d-flex">
+                                    <button type="button" class="step"
+                                        onclick="this.nextElementSibling.stepDown()">–</button>
+                                    <input type="number" min="0" max="20" value="1" readonly class="number">
+                                    <button type="button" class="step"
+                                        onclick="this.previousElementSibling.stepUp()">+</button>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="heading">Senior 65+</div>
+                                <div class="field d-flex">
+                                    <button type="button" class="step"
+                                        onclick="this.nextElementSibling.stepDown()">–</button>
+                                    <input type="number" min="0" max="20" value="1" readonly class="number">
+                                    <button type="button" class="step"
+                                        onclick="this.previousElementSibling.stepUp()">+</button>
+                                </div>
+                            </div>
+
+                            <div class="col-result right">Total €220</div>
+                            <button class="btn">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
         </section>
 
-        <section id="contacts">
+        <section id="paralax" class="paralax"></section>
+
+        <section id="contacts" class="contacts section-padding">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="border-bottom">Contacts</h2>
+                </div>
+
+                <div class="content d-flex">
+                    <div class="col-left">
+
+                        <div class="heading">Palais Royal Musee du Louvre</div>
+                        <div class="content">
+                            <div class="item">address: 75001 Paris, France</div>
+                            <div class="item">phone: +33(0) 1 40 20 50 50</div>
+                            <div class="item">mail: info@louvre.fr</div>
+                        </div>
+                    </div>
+
+                    <div class="col-right">
+                        <img src="./assets/img/map.jpg" alt="Map">
+                    </div>
+                </div>
+
         </section>
 
     </main>
