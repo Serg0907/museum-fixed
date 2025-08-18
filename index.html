@@ -26,7 +26,7 @@
                     <li class="nav-item"><a href="#contacts" class="nav-link">Contacts</a></li>
                 </ul>
             </nav>
-            <div class="toggle d-flex">
+            <div class="toggle d-flex user-select">
                 <div class="line line1"></div>
                 <div class="line line2"></div>
                 <div class="line line3"></div>
@@ -52,7 +52,15 @@
 
                 <div class="col-right d-flex">
                     <div class="wrapper">
-                        <img src="./assets/img/welcome-slider/1.jpg" alt="welcome">
+                        <div class="slider">
+                            <div class="swiper-wrapper">
+                                <img src="./assets/img/welcome-slider/1.jpg" class="swiper-slide" alt="welcome">
+                                <img src="./assets/img/welcome-slider/2.jpg" class="swiper-slide" alt="welcome">
+                                <img src="./assets/img/welcome-slider/3.jpg" class="swiper-slide" alt="welcome">
+                                <img src="./assets/img/welcome-slider/4.jpg" class="swiper-slide" alt="welcome">
+                                <img src="./assets/img/welcome-slider/5.jpg" class="swiper-slide" alt="welcome">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="navigation d-flex align-items-center justify-space-between">
@@ -62,13 +70,7 @@
                             <span class="count">05</span>
                         </div>
 
-                        <div class="d-flex dots">
-                            <div class="dot active"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                        </div>
+                        <div class="d-flex dots user-select"></div>
 
                         <div class="d-flex arrows">
                             <div class="d-flex align-items-center arrow arrow-left">
@@ -226,7 +228,12 @@
                     </div>
                 </div>
                 <div class="col-right">
-                    <img src="./assets/img/explore.jpg" alt="Picture explore">
+                    <div class="img-wrapper">
+                        <img src="./assets/img/explore-slider/after.jpg" alt="Picture explore">
+                    </div>
+                    <div class="img-wrapper img-overlay">
+                        <img src="./assets/img/explore-slider/before.jpg" alt="Picture explore">
+                    </div>
                 </div>
 
             </div>
@@ -250,19 +257,55 @@
 
                 </div>
 
+
+
+
+                <!-- <div class="player">
+  <div class="wrapper">
+    <video class="video"  preload="metadata">
+      <source src="./assets/video/video0.mp4" type="video/mp4">
+      Ваш браузер не поддерживает встроенные видео :(
+    </video>
+
+   
+    <button class="play-button big-play"></button>
+
+ 
+    <div class="panel d-flex justify-space-between align-items-center">
+      <img src="./assets/img/video/play.svg" alt="play" class="play-toggle">
+      <input type="range" value="0" min="0" max="100" step="1" class="progress range">
+      <img src="./assets/img/video/volume.svg" class="icon-volume" alt="volume">
+      <input type="range" value="100" min="0" max="100" step="1" class="volume range">
+      <img src="./assets/img/video/fullscreen.svg" class="icon-fullscreen" alt="fullscreen">
+    </div>
+
+  
+    <div class="speed-indicator" style="display:none;"></div>
+  </div>
+</div> -->
+
+
+
+
                 <div class="row">
                     <div class="player">
                         <div class="wrapper">
-                            <img src="./assets/img/video/video.jpg" alt="Video journey">
-                            <button class="play-button"></button>
+                            <!-- <img src="./assets/img/video/video.jpg" alt="Video journey"> -->
+                            <video class="video-player" width="100%" preload="metadata" poster="./assets/video/poster0.jpg">
+                                <source src="./assets/video/video0.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает встроенные видео :(
+                            </video>
+                            <button class="play-button big-play"></button>
 
                             <div class="panel d-flex justify-space-between align-items-center">
-                                <img src="./assets/img/video/play.svg" alt="play" class="play">
-                                <input type="range" value="40" min="0" max="100" step="1" class="progress range">
+                                <img src="./assets/img/video/play.svg" alt="play" class="play-toggle">
+                                <input type="range" value="0" min="0" max="100" step="any" class="progress range">
                                 <img src="./assets/img/video/volume.svg" class="icon-volume" alt="volume">
-                                <input type="range" value="40" min="0" max="100" step="1" class="volume range">
+                                <input type="range" value="100" min="0" max="100" step="1" class="volume range">
                                 <img src="./assets/img/video/fullscreen.svg" class="icon-fullscreen" alt="fullscreen">
                             </div>
+
+                            <div class="speed-indicator" style="display:none;"></div>
                         </div>
                     </div>
 
@@ -352,15 +395,15 @@
                     <div class="item">
                         <img src="./assets/img/galery/galery12.jpg" alt="gallery">
                     </div>
-                    
+
                     <div class="item">
                         <img src="./assets/img/galery/galery11.jpg" alt="gallery">
                     </div>
-                    
+
                     <div class="item">
                         <img src="./assets/img/galery/galery13.jpg" alt="gallery">
                     </div>
-                    
+
                     <div class="item">
                         <img src="./assets/img/galery/galery14.jpg" alt="gallery">
                     </div>
@@ -509,6 +552,7 @@
         </div>
     </footer>
     <script src="./script.js"></script>
+    <script src="./assets/js/swiper.min.js"></script>
 </body>
 
 </html>
