@@ -192,8 +192,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     fullscreenBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement) player.parentElement.requestFullscreen();
-        else document.exitFullscreen();
+        if (!document.fullscreenElement) {
+            player.parentElement.requestFullscreen();
+            fullscreenBtn.src = "./assets/img/video/fullscreen-exit.svg";
+        } else {
+            document.exitFullscreen();
+            fullscreenBtn.src = "./assets/img/video/fullscreen.svg";
+        }
     });
 
     document.addEventListener('keydown', (e) => {

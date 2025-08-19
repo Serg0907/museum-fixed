@@ -291,18 +291,22 @@
                     <div class="player">
                         <div class="wrapper">
                             <!-- <img src="./assets/img/video/video.jpg" alt="Video journey"> -->
-                            <video class="video-player" width="100%" preload="metadata" poster="./assets/video/poster0.jpg">
+                            <video class="video-player" width="100%" preload="metadata"
+                                poster="./assets/video/poster0.jpg">
                                 <source src="./assets/video/video0.mp4" type="video/mp4">
                                 Ваш браузер не поддерживает встроенные видео :(
                             </video>
                             <button class="play-button big-play"></button>
 
                             <div class="panel d-flex justify-space-between align-items-center">
-                                <img src="./assets/img/video/play.svg" alt="play" class="play-toggle">
+                                <div class="volume-wrapper">
+                                    <img src="./assets/img/video/play.svg" alt="play" class="play-toggle user-select">
+                                </div>
                                 <input type="range" value="0" min="0" max="100" step="any" class="progress range">
-                                <img src="./assets/img/video/volume.svg" class="icon-volume" alt="volume">
+                                <img src="./assets/img/video/volume.svg" class="icon-volume user-select" alt="volume">
                                 <input type="range" value="100" min="0" max="100" step="1" class="volume range">
-                                <img src="./assets/img/video/fullscreen.svg" class="icon-fullscreen" alt="fullscreen">
+                                <img src="./assets/img/video/fullscreen.svg" class="icon-fullscreen user-select"
+                                    alt="fullscreen">
                             </div>
 
                             <div class="speed-indicator" style="display:none;"></div>

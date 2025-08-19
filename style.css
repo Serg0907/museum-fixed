@@ -1134,6 +1134,15 @@ ul {
     background: url(./assets/img/video/arrow-next.svg);
 }
 
+.video .volume-wrapper {
+    min-width: 23px;
+}
+
+.video .panel .user-select {
+    cursor: pointer;
+}
+
+
 @media screen and (max-width: 1024px) {
     .video .col-right {
         display: none;
