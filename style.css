@@ -1028,6 +1028,7 @@ ul {
 
 .video .player {
     padding-bottom: 40px;
+    position: relative;
 }
 
 .video .player .wrapper {
@@ -1142,6 +1143,28 @@ ul {
     cursor: pointer;
 }
 
+.video .speed-indicator {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1;
+
+
+    opacity: 0;
+    transition: opacity 120ms;
+    display: block;
+    pointer-events: none;
+    /* display: none; */
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
 
 @media screen and (max-width: 1024px) {
     .video .col-right {
@@ -1431,8 +1454,17 @@ ul {
 }
 
 .gallery .section-title {
-    /* padding-bottom: 125px; */
     padding-bottom: 75px;
+}
+
+.gallery-items .item {
+    will-change: transform, opacity;
+}
+
+.gallery-items .item img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 

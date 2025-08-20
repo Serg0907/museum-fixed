@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const volumeSlider = document.querySelector('.volume');
     const fullscreenBtn = document.querySelector('.icon-fullscreen');
     const speedIndicator = document.querySelector('.speed-indicator');
+
     let lastVolume = 1;
     let rafId;
     let playStartTime = 0;
@@ -201,29 +202,255 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+
+
+function showSpeed(rate) {
+if (!speedIndicator) return;
+speedIndicator.textContent = rate.toFixed(2) + 'x';
+// speedIndicator.style.display = 'block';
+speedIndicator.style.opacity = '1';
+
+// Сброс предыдущего таймера, если был
+if (showSpeed._timer) {
+clearTimeout(showSpeed._timer);
+}
+// showSpeed._timer = setTimeout(() => {
+// speedIndicator.style.display = 'none';
+// }, 1000); 
+
+
+// speedIndicator.style.opacity = '1';
+// clearTimeout(showSpeed._timer);
+showSpeed._timer = setTimeout(() => { speedIndicator.style.opacity = '0'; }, 1000);
+
+
+
+}
+
+// Изменение скорости (вставь в свой код вместо текущего или обнови)
+function changeSpeed(delta) {
+// Границы как у YouTube: 0.25x–2x (можно 0.25–2, 0.25 шаг)
+const min = 0.25;
+const max = 2.0;
+// Округляем к ближайшему шагу 0.25
+let next = Math.round((video.playbackRate + delta) / 0.25) * 0.25;
+if (next < min) next = min;
+if (next > max) next = max;
+
+video.playbackRate = next;
+showSpeed(next);
+}
+
+
+
     document.addEventListener('keydown', (e) => {
         const code = e.code.toLowerCase();
         if (code === 'space') { e.preventDefault(); togglePlay(); }
         else if (code === 'keym' || code === 'ь' || code === 'м') { volumeIcon.click(); }
         else if (code === 'keyf' || code === 'а') { fullscreenBtn.click(); }
-        else if (e.shiftKey && (e.key === ',' || e.key === 'б')) { changeSpeed(-0.25); }
-        else if (e.shiftKey && (e.key === '.' || e.key === 'ю')) { changeSpeed(0.25); }
+        else if (e.shiftKey && (e.key === '<' || e.key === 'Б')) { changeSpeed(-0.25); }
+        else if (e.shiftKey && (e.key === '>' || e.key === 'Ю')) { changeSpeed(0.25); }
     });
 
-    function changeSpeed(delta) {
-        let newRate = Math.min(Math.max(video.playbackRate + delta, 0.25), 2);
-        video.playbackRate = newRate;
-        showSpeed(newRate);
-    }
-    function showSpeed(rate) {
-        speedIndicator.textContent = rate.toFixed(2) + 'x';
-        speedIndicator.style.display = 'block';
-        clearTimeout(speedIndicator.timer);
-        speedIndicator.timer = setTimeout(() => { speedIndicator.style.display = 'none'; }, 1000);
-    }
+    // function changeSpeed(delta) {
+    //     let newRate = Math.min(Math.max(video.playbackRate + delta, 0.25), 2);
+    //     video.playbackRate = newRate;
+    //     showSpeed(newRate);
+    // }
+    // function showSpeed(rate) {
+    //     speedIndicator.textContent = rate.toFixed(2) + 'x';
+    //     speedIndicator.style.display = 'block';
+    //     clearTimeout(speedIndicator.timer);
+    //     speedIndicator.timer = setTimeout(() => { speedIndicator.style.display = 'none'; }, 1000);
+    // }
 
     // Установка начальных значений и заливок
     video.volume = volumeSlider.value / 100;
     updateVolumeBackground();
     updateProgressBackground(0);
+
+    const gallery = document.getElementById('gallery');
+    const galleryItems = document.querySelectorAll('.gallery-items .item img');
+    
+    let lastScrollY = window.scrollY;
+    let isScrollingDown = true;
+    let animatedItems = new Set();
+    let visibleItems = new Set();
+    let isInitialLoad = true;
+    
+    // Инициализация состояния элементов
+    function initializeItems() {
+        galleryItems.forEach((item, index) => {
+            item.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+            item.style.transform = 'translateY(60px) scale(0.9)';
+            item.style.opacity = '0';
+            item.dataset.index = index;
+        });
+    }
+    
+    // Анимация конкретного элемента
+    function animateItem(item, delay = 0) {
+        const index = parseInt(item.dataset.index);
+        setTimeout(() => {
+            item.style.transform = 'translateY(0) scale(1)';
+            item.style.opacity = '1';
+            animatedItems.add(index);
+        }, delay);
+    }
+    
+    // Показать элемент без анимации
+    function showItemInstantly(item) {
+        const index = parseInt(item.dataset.index);
+        item.style.transition = 'none';
+        item.style.transform = 'translateY(0) scale(1)';
+        item.style.opacity = '1';
+        animatedItems.add(index);
+        setTimeout(() => {
+            item.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+        }, 50);
+    }
+    
+    // Проверка видимости конкретного элемента
+    function isItemVisible(item) {
+        const rect = item.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        return rect.top < windowHeight * 0.9 && rect.bottom > 0;
+    }
+    
+    // Проверка видимости галереи в целом
+    function isGalleryInViewport() {
+        const rect = gallery.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        return rect.top < windowHeight && rect.bottom > 0;
+    }
+    
+    // Проверка, находится ли пользователь уже прошел галерею полностью
+    function hasPassedGallery() {
+        const galleryTop = gallery.offsetTop;
+        const galleryHeight = gallery.offsetHeight;
+        const currentScrollY = window.scrollY;
+        
+        return currentScrollY > galleryTop + galleryHeight;
+    }
+    
+    // Проверка, находится ли пользователь в пределах секции галереи
+    function isWithinGallerySection() {
+        const galleryTop = gallery.offsetTop;
+        const galleryHeight = gallery.offsetHeight;
+        const currentScrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        return currentScrollY + windowHeight > galleryTop && 
+               currentScrollY < galleryTop + galleryHeight;
+    }
+    
+    // Обработчик скролла
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        isScrollingDown = currentScrollY > lastScrollY;
+        
+        if (isGalleryInViewport()) {
+            let animationDelay = 0;
+            
+            galleryItems.forEach((item) => {
+                const index = parseInt(item.dataset.index);
+                const isCurrentlyVisible = isItemVisible(item);
+                const wasVisible = visibleItems.has(index);
+                
+                if (isCurrentlyVisible) {
+                    visibleItems.add(index);
+                    
+                    if (isScrollingDown && !animatedItems.has(index)) {
+                        // Прокручиваем вниз и элемент еще не анимирован
+                        animateItem(item, animationDelay);
+                        animationDelay += 80;
+                    } else if (!isScrollingDown && !animatedItems.has(index)) {
+                        // Прокручиваем вверх и элемент не анимирован - показываем сразу
+                        showItemInstantly(item);
+                    }
+                } else {
+                    visibleItems.delete(index);
+                }
+            });
+        } else if (currentScrollY < gallery.offsetTop) {
+            // Если прокрутили выше галереи, сбрасываем состояние
+            animatedItems.clear();
+            visibleItems.clear();
+            initializeItems();
+        }
+        
+        lastScrollY = currentScrollY;
+        isInitialLoad = false;
+    }
+    
+    // Инициализация при загрузке страницы
+    function initializeOnLoad() {
+        // Добавляем индексы к элементам
+        galleryItems.forEach((item, index) => {
+            item.dataset.index = index;
+        });
+        
+        if (hasPassedGallery()) {
+            // Если страница загружена после галереи, показываем все элементы
+            galleryItems.forEach(item => {
+                showItemInstantly(item);
+            });
+        } else if (isWithinGallerySection()) {
+            // Если страница загружена в пределах секции галереи - запускаем анимацию
+            initializeItems();
+            
+            // Небольшая задержка для корректной инициализации
+            setTimeout(() => {
+                let animationDelay = 0;
+                galleryItems.forEach((item) => {
+                    if (isItemVisible(item)) {
+                        animateItem(item, animationDelay);
+                        animationDelay += 80;
+                    }
+                });
+            }, 100);
+            
+        } else if (isGalleryInViewport()) {
+            // Если галерея видна при загрузке сверху
+            galleryItems.forEach((item) => {
+                if (isItemVisible(item)) {
+                    showItemInstantly(item);
+                } else {
+                    const index = parseInt(item.dataset.index);
+                    item.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
+                    item.style.transform = 'translateY(60px) scale(0.9)';
+                    item.style.opacity = '0';
+                }
+            });
+        } else {
+            // Если галерея не видна, инициализируем все элементы как скрытые
+            initializeItems();
+        }
+    }
+    
+    // Запускаем инициализацию
+    initializeOnLoad();
+    
+    // Добавление обработчика скролла с throttling
+    let ticking = false;
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                handleScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick);
+    
+    // Обработчик изменения размера окна
+    window.addEventListener('resize', function() {
+        if (!isInitialLoad) {
+            requestTick();
+        }
+    });
 });
