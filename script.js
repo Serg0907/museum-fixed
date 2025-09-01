@@ -79,11 +79,75 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
+
+
     let activeSlide = document.querySelector('.welcome .counts .active');
     swiper.on('slideChange', function () {
         activeSlide.innerHTML = "0" + (this.realIndex + 1);
     });
 
+    const swiper2 = new Swiper(".video .slider", {
+        spaceBetween: 42,
+        slidesPerView: 3,
+        loop: true,
+
+        pagination: {
+            el: ".video .dots",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".video .arrow-next",
+            prevEl: ".video .arrow-prev",
+        },
+        on: {
+            slideChange: function () {
+                setTimeout(changeVideo, 0);
+                ytPlayers.forEach(p => { try { p.pauseVideo(); } catch (e) { } });
+            },
+        },
+
+        breakpoints: {
+            320: {
+                slidesPerView: 3
+            },
+            991: {
+                slidesPerView: 3
+            }
+        },
+    });
+
+    function changeVideo() {
+        const active = document.querySelector('.video .swiper-slide-active');
+        const videoEl = document.querySelector('.video .video-player');
+        if (!active || !videoEl) return;
+
+        const poster = active.getAttribute('data-poster');
+        const src = active.getAttribute('data-video');
+
+        if (!poster && !src) return;
+
+        // Обновляем poster
+        if (poster) {
+            videoEl.setAttribute('poster', poster);
+        }
+
+        // Обновляем <source> внутри <video>
+        let sourceEl = videoEl.querySelector('source[type="video/mp4"]')
+            || videoEl.querySelector('source');
+        if (!sourceEl) {
+            sourceEl = document.createElement('source');
+            sourceEl.type = 'video/mp4';
+            videoEl.appendChild(sourceEl);
+        }
+        if (src) {
+            sourceEl.src = src;
+        }
+
+        videoEl.load();
+        playToggle.src = "./assets/img/video/play.svg";
+    }
+
+    // swiper2.on('slideChange', updateVideoFromActiveSlide);
 
     const player = document.querySelector('.player');
     const video = document.querySelector('.video-player');
@@ -204,42 +268,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-function showSpeed(rate) {
-if (!speedIndicator) return;
-speedIndicator.textContent = rate.toFixed(2) + 'x';
-// speedIndicator.style.display = 'block';
-speedIndicator.style.opacity = '1';
+    function showSpeed(rate) {
+        if (!speedIndicator) return;
+        speedIndicator.textContent = rate.toFixed(2) + 'x';
+        speedIndicator.style.opacity = '1';
 
-// Сброс предыдущего таймера, если был
-if (showSpeed._timer) {
-clearTimeout(showSpeed._timer);
-}
-// showSpeed._timer = setTimeout(() => {
-// speedIndicator.style.display = 'none';
-// }, 1000); 
+        // Сброс предыдущего таймера, если был
+        if (showSpeed._timer) {
+            clearTimeout(showSpeed._timer);
+        }
 
-
-// speedIndicator.style.opacity = '1';
-// clearTimeout(showSpeed._timer);
-showSpeed._timer = setTimeout(() => { speedIndicator.style.opacity = '0'; }, 1000);
+        showSpeed._timer = setTimeout(() => { speedIndicator.style.opacity = '0'; }, 1000);
 
 
 
-}
+    }
 
-// Изменение скорости (вставь в свой код вместо текущего или обнови)
-function changeSpeed(delta) {
-// Границы как у YouTube: 0.25x–2x (можно 0.25–2, 0.25 шаг)
-const min = 0.25;
-const max = 2.0;
-// Округляем к ближайшему шагу 0.25
-let next = Math.round((video.playbackRate + delta) / 0.25) * 0.25;
-if (next < min) next = min;
-if (next > max) next = max;
+    // Изменение скорости (вставь в свой код вместо текущего или обнови)
+    function changeSpeed(delta) {
+        // Границы как у YouTube: 0.25x–2x (можно 0.25–2, 0.25 шаг)
+        const min = 0.25;
+        const max = 2.0;
+        // Округляем к ближайшему шагу 0.25
+        let next = Math.round((video.playbackRate + delta) / 0.25) * 0.25;
+        if (next < min) next = min;
+        if (next > max) next = max;
 
-video.playbackRate = next;
-showSpeed(next);
-}
+        video.playbackRate = next;
+        showSpeed(next);
+    }
 
 
 
@@ -252,18 +309,6 @@ showSpeed(next);
         else if (e.shiftKey && (e.key === '>' || e.key === 'Ю')) { changeSpeed(0.25); }
     });
 
-    // function changeSpeed(delta) {
-    //     let newRate = Math.min(Math.max(video.playbackRate + delta, 0.25), 2);
-    //     video.playbackRate = newRate;
-    //     showSpeed(newRate);
-    // }
-    // function showSpeed(rate) {
-    //     speedIndicator.textContent = rate.toFixed(2) + 'x';
-    //     speedIndicator.style.display = 'block';
-    //     clearTimeout(speedIndicator.timer);
-    //     speedIndicator.timer = setTimeout(() => { speedIndicator.style.display = 'none'; }, 1000);
-    // }
-
     // Установка начальных значений и заливок
     video.volume = volumeSlider.value / 100;
     updateVolumeBackground();
@@ -271,13 +316,13 @@ showSpeed(next);
 
     const gallery = document.getElementById('gallery');
     const galleryItems = document.querySelectorAll('.gallery-items .item img');
-    
+
     let lastScrollY = window.scrollY;
     let isScrollingDown = true;
     let animatedItems = new Set();
     let visibleItems = new Set();
     let isInitialLoad = true;
-    
+
     // Инициализация состояния элементов
     function initializeItems() {
         galleryItems.forEach((item, index) => {
@@ -287,7 +332,7 @@ showSpeed(next);
             item.dataset.index = index;
         });
     }
-    
+
     // Анимация конкретного элемента
     function animateItem(item, delay = 0) {
         const index = parseInt(item.dataset.index);
@@ -297,7 +342,7 @@ showSpeed(next);
             animatedItems.add(index);
         }, delay);
     }
-    
+
     // Показать элемент без анимации
     function showItemInstantly(item) {
         const index = parseInt(item.dataset.index);
@@ -309,58 +354,58 @@ showSpeed(next);
             item.style.transition = 'transform 0.8s ease-out, opacity 0.8s ease-out';
         }, 50);
     }
-    
+
     // Проверка видимости конкретного элемента
     function isItemVisible(item) {
         const rect = item.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-        
+
         return rect.top < windowHeight * 0.9 && rect.bottom > 0;
     }
-    
+
     // Проверка видимости галереи в целом
     function isGalleryInViewport() {
         const rect = gallery.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         return rect.top < windowHeight && rect.bottom > 0;
     }
-    
+
     // Проверка, находится ли пользователь уже прошел галерею полностью
     function hasPassedGallery() {
         const galleryTop = gallery.offsetTop;
         const galleryHeight = gallery.offsetHeight;
         const currentScrollY = window.scrollY;
-        
+
         return currentScrollY > galleryTop + galleryHeight;
     }
-    
+
     // Проверка, находится ли пользователь в пределах секции галереи
     function isWithinGallerySection() {
         const galleryTop = gallery.offsetTop;
         const galleryHeight = gallery.offsetHeight;
         const currentScrollY = window.scrollY;
         const windowHeight = window.innerHeight;
-        
-        return currentScrollY + windowHeight > galleryTop && 
-               currentScrollY < galleryTop + galleryHeight;
+
+        return currentScrollY + windowHeight > galleryTop &&
+            currentScrollY < galleryTop + galleryHeight;
     }
-    
+
     // Обработчик скролла
     function handleScroll() {
         const currentScrollY = window.scrollY;
         isScrollingDown = currentScrollY > lastScrollY;
-        
+
         if (isGalleryInViewport()) {
             let animationDelay = 0;
-            
+
             galleryItems.forEach((item) => {
                 const index = parseInt(item.dataset.index);
                 const isCurrentlyVisible = isItemVisible(item);
                 const wasVisible = visibleItems.has(index);
-                
+
                 if (isCurrentlyVisible) {
                     visibleItems.add(index);
-                    
+
                     if (isScrollingDown && !animatedItems.has(index)) {
                         // Прокручиваем вниз и элемент еще не анимирован
                         animateItem(item, animationDelay);
@@ -379,18 +424,18 @@ showSpeed(next);
             visibleItems.clear();
             initializeItems();
         }
-        
+
         lastScrollY = currentScrollY;
         isInitialLoad = false;
     }
-    
+
     // Инициализация при загрузке страницы
     function initializeOnLoad() {
         // Добавляем индексы к элементам
         galleryItems.forEach((item, index) => {
             item.dataset.index = index;
         });
-        
+
         if (hasPassedGallery()) {
             // Если страница загружена после галереи, показываем все элементы
             galleryItems.forEach(item => {
@@ -399,7 +444,7 @@ showSpeed(next);
         } else if (isWithinGallerySection()) {
             // Если страница загружена в пределах секции галереи - запускаем анимацию
             initializeItems();
-            
+
             // Небольшая задержка для корректной инициализации
             setTimeout(() => {
                 let animationDelay = 0;
@@ -410,7 +455,7 @@ showSpeed(next);
                     }
                 });
             }, 100);
-            
+
         } else if (isGalleryInViewport()) {
             // Если галерея видна при загрузке сверху
             galleryItems.forEach((item) => {
@@ -428,29 +473,101 @@ showSpeed(next);
             initializeItems();
         }
     }
-    
+
     // Запускаем инициализацию
     initializeOnLoad();
-    
+
     // Добавление обработчика скролла с throttling
     let ticking = false;
-    
+
     function requestTick() {
         if (!ticking) {
-            requestAnimationFrame(function() {
+            requestAnimationFrame(function () {
                 handleScroll();
                 ticking = false;
             });
             ticking = true;
         }
     }
-    
+
     window.addEventListener('scroll', requestTick);
-    
+
     // Обработчик изменения размера окна
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
         if (!isInitialLoad) {
             requestTick();
         }
     });
+
+
+
+
+
+
 });
+
+
+
+let ytPlayers = [];
+
+// Инициализация YT API
+function onYouTubeIframeAPIReady() {
+    const frames = document.querySelectorAll('.slider .swiper-slide iframe[src*="youtube.com/embed"]');
+    frames.forEach((iframe) => {
+        // гарантируем enablejsapi=1
+        const url = new URL(iframe.src);
+        if (url.searchParams.get('enablejsapi') !== '1') {
+            url.searchParams.set('enablejsapi', '1');
+            iframe.src = url.toString();
+        }
+        const player = new YT.Player(iframe, {
+            events: {
+                onStateChange: handleStateChange
+            }
+        });
+        ytPlayers.push(player);
+    });
+}
+
+function pauseAllExcept(target) {
+    ytPlayers.forEach(p => {
+        if (p !== target) {
+            try { p.pauseVideo(); } catch (e) { }
+        }
+    });
+}
+
+function handleStateChange(e) {
+    // PLAYING = 1
+    if (e.data === YT.PlayerState.PLAYING) {
+        pauseAllExcept(e.target);
+    }
+}
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoia3NtMDkwNyIsImEiOiJjbWVyZ29sMXEwN3E5MmxzZHBnbnBzM2l6In0.VMVqwYxl6st5JK133ihvug';
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/ksm0907/cmeri6vfa00a901qtaicjad5x',
+    center: [2.3364, 48.86091],
+    zoom: 15.7
+});
+
+const marker1 = new mapboxgl.Marker({ color: 'black', scale: 0.85 })
+    .setLngLat([2.3364, 48.86091])
+    .addTo(map);
+
+const marker2 = new mapboxgl.Marker({ color: '#757575', scale: 0.85 })
+    .setLngLat([2.3333, 48.8602])
+    .addTo(map);
+const marker3 = new mapboxgl.Marker({ color: '#757575', scale: 0.85 })
+    .setLngLat([2.3397, 48.8607])
+    .addTo(map);
+const marker4 = new mapboxgl.Marker({ color: '#757575', scale: 0.85 })
+    .setLngLat([2.3330, 48.8619])
+    .addTo(map);
+const marker5 = new mapboxgl.Marker({ color: '#757575', scale: 0.85 })
+    .setLngLat([2.3365, 48.8625])
+    .addTo(map);
+
+
+
