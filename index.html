@@ -435,15 +435,15 @@
                         <div class="col-title">Ticket Type</div>
                         <div class="col-content d-flex">
                             <label class="inner ">
-                                <input type="radio" checked="checked" name="radio">Permanent exhibition
+                                <input type="radio" checked="checked" name="radio" value="20">Permanent exhibition
                                 <span class="checkmark"></span>
                             </label>
                             <label class="inner">
-                                <input type="radio" name="radio">Temporary exhibition
+                                <input type="radio" name="radio" value="25">Temporary exhibition
                                 <span class="checkmark"></span>
                             </label>
                             <label class="inner">
-                                <input type="radio" name="radio">Combined Admission
+                                <input type="radio" name="radio" value="40">Combined Admission
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -455,22 +455,18 @@
                             <div class="item">
                                 <div class="heading">Basic 18+</div>
                                 <div class="field d-flex">
-                                    <button type="button" class="step"
-                                        onclick="this.nextElementSibling.stepDown()">–</button>
-                                    <input type="number" min="1" max="20" value="1" readonly class="number">
-                                    <button type="button" class="step"
-                                        onclick="this.previousElementSibling.stepUp()">+</button>
+                                    <button type="button" class="step minus">–</button>
+                                    <input type="number" min="1" max="20" value="1" readonly class="basic number">
+                                    <button type="button" class="step plus">+</button>
                                 </div>
                             </div>
 
                             <div class="item">
                                 <div class="heading">Senior 65+</div>
                                 <div class="field d-flex">
-                                    <button type="button" class="step"
-                                        onclick="this.nextElementSibling.stepDown()">–</button>
-                                    <input type="number" min="1" max="20" value="1" readonly class="number">
-                                    <button type="button" class="step"
-                                        onclick="this.previousElementSibling.stepUp()">+</button>
+                                    <button type="button" class="step minus">–</button>
+                                    <input type="number" min="1" max="20" value="1" readonly class="senior number">
+                                    <button type="button" class="step plus">+</button>
                                 </div>
                             </div>
 
@@ -565,6 +561,7 @@
         <div class="popup">
             <div class="overlay"></div>
             <div class="container d-flex">
+                <div class="close"></div>
                 <div class="container-wrapper d-flex">
                     <div class="col-left">
                         <div class="col-header">
@@ -577,8 +574,36 @@
                         <div class="col-body">
                             <form action="">
                                 <div class="item d-flex justify-space-between">
-                                    <input id="date" class="date" type="date" />
-                                    <input id="time" class="time" type="time" />
+                                    <!-- <input id="date" class="date" type="date" placeholder="Date" /> -->
+
+                                    <div class="date-field">
+                                        <input id="date" class="date" type="date" />
+                                        <span class="date-placeholder d-flex">Date</span>
+                                    </div>
+
+                                    <div class="time">
+                                        <select name="time" id="time">
+                                            <option value="" disabled selected hidden>Time</option>
+                                            <option value="09:00">09 : 00</option>
+                                            <option value="09:30">09 : 30</option>
+                                            <option value="10:00">10 : 00</option>
+                                            <option value="10:30">10 : 30</option>
+                                            <option value="11:00">11 : 00</option>
+                                            <option value="11:30">11 : 30</option>
+                                            <option value="12:00">12 : 00</option>
+                                            <option value="12:30">12 : 30</option>
+                                            <option value="13:00">13 : 00</option>
+                                            <option value="13:30">13 : 30</option>
+                                            <option value="14:00">14 : 00</option>
+                                            <option value="14:30">14 : 30</option>
+                                            <option value="15:00">15 : 00</option>
+                                            <option value="15:30">15 : 30</option>
+                                            <option value="16:00">16 : 00</option>
+                                            <option value="16:30">16 : 30</option>
+                                            <option value="17:00">17 : 00</option>
+                                            <option value="17:30">17 : 30</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="item">
                                     <input type="text" class="name" placeholder="Name" />
@@ -593,9 +618,9 @@
 
                                     <select name="type" id="type">
                                         <option value="">Ticket Type</option>
-                                        <option value="Permanent exhibition">Permanent exhibition</option>
-                                        <option value="Temporary exhibition">Temporary exhibition</option>
-                                        <option value="Combined Admission">Combined Admission</option>
+                                        <option value="20">Permanent exhibition</option>
+                                        <option value="25">Temporary exhibition</option>
+                                        <option value="40">Combined Admission</option>
                                     </select>
                                 </div>
                                 <div class="item">
@@ -605,24 +630,20 @@
                                             <div class="field d-flex justify-space-between">
                                                 <div class="col-left">Basic 18+ (20 €)</div>
                                                 <div class="col-right d-flex">
-                                                    <button type="button" class="step"
-                                                        onclick="this.nextElementSibling.stepDown()">–</button>
+                                                    <button type="button" class="step minus">–</button>
                                                     <input type="number" min="1" max="20" value="1" readonly=""
-                                                        class="number">
-                                                    <button type="button" class="step"
-                                                        onclick="this.previousElementSibling.stepUp()">+</button>
+                                                        class="basic number">
+                                                    <button type="button" class="step plus">+</button>
                                                 </div>
                                             </div>
 
                                             <div class="field d-flex justify-space-between">
                                                 <div class="col-left">Senior 65+ (10 €)</div>
                                                 <div class="col-right d-flex">
-                                                    <button type="button" class="step"
-                                                        onclick="this.nextElementSibling.stepDown()">–</button>
+                                                    <button type="button" class="step minus">–</button>
                                                     <input type="number" min="1" max="20" value="1" readonly=""
-                                                        class="number">
-                                                    <button type="button" class="step"
-                                                        onclick="this.previousElementSibling.stepUp()">+</button>
+                                                        class="senior number">
+                                                    <button type="button" class="step plus">+</button>
                                                 </div>
                                             </div>
 
@@ -676,7 +697,7 @@
                             <div class="bottom">
                                 <div class="card one-side">
 
-                                    <div class="top">
+                                    <div class="top d-flex justify-space-between">
                                         <div class="fields">
                                             <div class="field">
                                                 <label>
@@ -685,14 +706,46 @@
                                                 </label>
                                             </div>
 
-                                            <div class="field d-flex justify-space-between">
-                                                <input type="date">
-                                                <input type="date">
+                                            <div class="field d-flex flex-direction-column">
+                                                <label>
+                                                    <span>Expiration date</span>
+                                                </label>
+                                                <div class="select-date d-flex justify-space-between">
+                                                    <select name="exp-date" id="exp-date">
+                                                        <option value="01">01</option>
+                                                        <option value="02">02</option>
+                                                        <option value="03" selected>03</option>
+                                                        <option value="04">04</option>
+                                                        <option value="05">05</option>
+                                                        <option value="06">06</option>
+                                                        <option value="07">07</option>
+                                                        <option value="08">08</option>
+                                                        <option value="09">09</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                    </select>
+                                                    <select name="exp-year" id="exp-year">
+                                                        <option value="2025" selected>2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <option value="2027">2027</option>
+                                                        <option value="2028">2028</option>
+                                                        <option value="2029">2029</option>
+                                                        <option value="2030">2030</option>
+                                                        <option value="2031">2031</option>
+                                                        <option value="2032">2032</option>
+                                                        <option value="2033">2033</option>
+                                                        <option value="2034">2034</option>
+                                                        <option value="2035">2035</option>
+                                                        <option value="2036">2036</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="logos">
-                                            <img src="./assets/img/popup/visa.svg" alt="visa">
-                                            <img src="./assets/img/popup/mastercard.svg" alt="mastercard">
+                                        <div class="logos d-flex flex-direction-column">
+                                            <img width="55" height="16" src="./assets/img/popup/visa.svg" alt="visa">
+                                            <img width="53" height="32" src="./assets/img/popup/mastercard.svg"
+                                                alt="mastercard">
                                         </div>
                                     </div>
 
@@ -707,7 +760,7 @@
 
                                 </div>
 
-                                <div class="card two-side">
+                                <div class="card two-side d-flex">
 
                                     <div class="code">
                                         <label>
@@ -723,7 +776,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-footer">
+                        <div class="col-footer d-flex">
                             <button class="btn">Book</button>
                         </div>
 

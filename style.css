@@ -85,6 +85,10 @@ body {
     line-height: normal;
 }
 
+.active-popup {
+    overflow: hidden;
+}
+
 .container {
     max-width: 1480px;
     margin: 0 auto;
@@ -165,6 +169,7 @@ a {
     padding: 0;
     margin: 0;
     border: 0;
+    cursor: pointer;
 }
 
 ul {
@@ -178,6 +183,17 @@ ul {
     -moz-user-select: none;
     -ms-user-select: none;
     caret-color: transparent;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    cursor: pointer;
 }
 
 @media (max-width: 1024px) {
@@ -2376,7 +2392,7 @@ footer .footer-item:nth-child(even) {
 .footer .popup {
     position: fixed;
     top: 0;
-    /* bottom: 0; */
+    bottom: 0;
     left: 0;
     right: 0;
     display: flex;
@@ -2384,6 +2400,10 @@ footer .footer-item:nth-child(even) {
     z-index: 9;
     font-size: 18px;
     color: var(--bg-black);
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+    transition: 600ms all;
 }
 
 .footer .popup .container {
@@ -2393,11 +2413,34 @@ footer .footer-item:nth-child(even) {
     z-index: 2;
     justify-content: center;
     padding: 91px 0;
+    position: relative;
+    transition: 600ms all;
+    transform: translateX(-130%);
+    height: 90vh;
+    overflow: auto;
+}
+
+.footer .popup .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgb(0 0 0 / 80%);
+}
+
+.active-popup .footer .popup .container {
+    transform: translateX(0);
+}
+
+.active-popup .footer .popup {
+    z-index: 9;
+    visibility: visible;
+    opacity: 1;
 }
 
 .footer .popup .container .container-wrapper {
     max-width: 970px;
     width: 100%;
+    height: max-content;
 }
 
 .footer>.popup>.container>.container-wrapper>.col-left {
@@ -2409,6 +2452,7 @@ footer .footer-item:nth-child(even) {
 .footer>.popup>.container>.container-wrapper>.col-right {
     flex-grow: 1;
     padding: 25px 30px 26px;
+    border: 1px solid var(--bg-black);
 }
 
 .footer>.popup>.container>.container-wrapper>.col-right .col-header {
@@ -2444,17 +2488,18 @@ footer .footer-item:nth-child(even) {
     margin-right: 10px;
 }
 
-.footer>.popup>.container>.container-wrapper>.col-right .col-body .top {
+.footer>.popup>.container>.container-wrapper>.col-right .col-body>.top {
     border-bottom: 2px solid #740C11;
-    padding-bottom: 10px;
-    margin-bottom: 9px;
+    padding-bottom: 9px;
+    margin-bottom: 10px;
 }
 
 .footer>.popup>.container>.container-wrapper>.col-right .col-body .middle {
     font-size: 32px;
     font-weight: 400;
     color: var(--bg-black);
-    line-height: 41px;
+    line-height: 38px;
+    margin-bottom: 10px;
 }
 
 .footer>.popup>.container>.container-wrapper>.col-right .col-body .middle .sum {
@@ -2482,6 +2527,16 @@ footer .footer-item:nth-child(even) {
     margin-right: 15px;
 }
 
+.footer .popup .close {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background: url('data:image/svg+xml,<svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L26 26" stroke="%23030303"/><path d="M26 1L1 26" stroke="%23030303"/></svg>');
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+
 .footer .popup .container>.col-right {
     border: 1px solid var(--bg-black);
     padding: 25px 30px 26px;
@@ -2492,13 +2547,6 @@ footer .footer-item:nth-child(even) {
     font-weight: 500;
     margin-bottom: 2px;
     color: #272727;
-}
-
-.footer .popup .overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: rgb(0 0 0 / 60%);
 }
 
 .footer .popup .col-left .col-header {
@@ -2527,7 +2575,8 @@ footer .footer-item:nth-child(even) {
 }
 
 .footer .popup input,
-.footer .popup select {
+.footer .popup select[name="time"],
+.footer .popup select[name="type"] {
     border: 1px solid var(--bg-black);
     font-size: 18px;
     color: var(--bg-black);
@@ -2538,6 +2587,50 @@ footer .footer-item:nth-child(even) {
 
 .footer .popup .col-left .col-body .item:not(:last-child) {
     margin-bottom: 20px;
+}
+
+.footer .popup .col-left .col-body .item:first-child {
+    gap: 20px;
+}
+
+.footer .popup .col-left .col-body .item:first-child input,
+.footer .popup .col-left .col-body .item:first-child .time {
+    width: 100%;
+    max-width: 190px;
+    height: 45px;
+}
+
+
+.footer .popup .col-left .col-body .date-field {
+    position: relative;
+    width: 100%;
+    max-width: 190px;
+}
+
+.footer .popup .col-left .col-body .date.filled+.date-placeholder {
+    opacity: 0;
+}
+
+
+.footer .popup .col-left .col-body .date-placeholder {
+    position: absolute;
+    left: 45px;
+    pointer-events: none;
+    width: calc(100% - 80px);
+    background: #ffffff;
+    top: 0;
+    border: 1px solid var(--bg-black);
+    height: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    color: #030303;
+    align-items: center;
+    border-left: 0;
+    border-right: 0;
+}
+
+.footer .popup .col-left .col-body .item .date {
+    background: url(./assets/img/popup/date.svg) no-repeat 15px 50%;
 }
 
 .footer .popup .col-left .col-body .item .name {
@@ -2593,26 +2686,142 @@ footer .footer-item:nth-child(even) {
     line-height: 25px;
 }
 
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .one-side {
+    background: #BCBCBC;
+    z-index: 1;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .two-side {
+    background: #939393;
+    margin: -181px 0 0 110px;
+    justify-content: flex-end;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .two-side:after {
+    content: "";
+    position: absolute;
+    height: 45px;
+    width: 100%;
+    top: 25px;
+    left: 0;
+    background: #161615;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .two-side .code {
+    max-width: 75px;
+    padding-top: 72px;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card {
+    padding: 15px 20px;
+    max-width: 360px;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card label span,
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card .text {
+    font-size: 12px;
+    color: #161615;
+    font-weight: 400;
+    display: block;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card .code label span {
+    text-align: center;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card label span {
+    margin-bottom: 5px;
+    line-height: 1.084;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card .text {
+    font-size: 10px;
+    padding: 5px 0 0px 10px;
+    line-height: 12.75px;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card input,
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card select {
+    border: 0.5px solid #A4A4A3;
+    font-size: 12px;
+    color: #161615;
+    font-weight: 400;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card input {
+    padding: 9.5px 10px;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card select {
+    padding: 10px;
+    background: url('data:image/svg+xml,<svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.00343 0L0.00390625 4H6.00391L3.00343 0Z" fill="%23A4A4A3"/><path d="M3.00182 11.0005L6 7.00049H0L3.00182 11.0005Z" fill="%23A4A4A3"/></svg>') no-repeat 89% 50% #ffffff;
+    width: 100%;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card .fields {
+    max-width: 215px;
+    width: 100%;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card .fields .select-date {
+    gap: 15px
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card .fields .field {
+    margin-bottom: 10px;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card .logos {
+    padding-top: 19px;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-body .bottom .card .logos img:first-child {
+    margin-bottom: 15px;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-footer {
+    justify-content: flex-end;
+    padding-top: 26px;
+}
+
+.footer>.popup>.container>.container-wrapper>.col-right .col-footer .btn {
+    font-size: 22px;
+    background: var(--dark-red);
+    color: #ffffff;
+    max-width: 220px;
+    width: 100%;
+    padding: 9px 0;
+}
+
 .footer .popup input[type="number"]::-webkit-outer-spin-button,
 .footer .popup input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 
 .footer .popup select {
-    background: url(./assets/img/popup/ballot.svg) no-repeat 15px 50%;
     outline: 0;
     border-radius: 0;
+}
+
+.footer .popup select[name="time"],
+.footer .popup select[name="type"] {
+    background: url(./assets/img/popup/ballot.svg) no-repeat 15px 50%;
     padding: 12.5px 15px 12.5px 15px;
     text-indent: 30px;
 }
 
+.footer .popup select[name="time"] {
+    background: url(./assets/img/popup/time.svg) no-repeat 15px 50%;
+}
+
+.footer .popup .col-body .date-field,
+.footer .popup .col-body .time,
 .footer .popup .col-body .type {
     background: url(./assets/img/popup/arrow.svg) no-repeat calc(100% - 15px) 50%;
 }
-
-/* .footer .popup select option::checkmark {
-    display: none;
-}*/
 
 .footer .popup select {
     /* ::picker(select) { */

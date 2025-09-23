@@ -506,6 +506,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+function updateCheckedInput() {
+    let GROUP = 'radio';
+    let saved = localStorage.getItem('ticketTypeValue');
+    if (!saved) return;
+    let toCheck = document.querySelector(`input[type="radio"][name="${GROUP}"][value="${CSS.escape(saved)}"]`);
+    if (toCheck) {
+        toCheck.checked = true;
+    }
+}
+
+updateCheckedInput();
+
+
+let ticketTypeValue = document.querySelector('.tickets .inner input[type="radio"]').value;
+
+document.addEventListener('change', function (e) {
+    if (e.target.matches('input[type="radio"][name="radio"]')) {
+        localStorage.setItem('ticketTypeValue', e.target.value);
+    }
+});
+
 
 
 let ytPlayers = [];
@@ -570,4 +591,61 @@ const marker5 = new mapboxgl.Marker({ color: '#757575', scale: 0.85 })
     .addTo(map);
 
 
+let ticketsBtn = document.querySelector(".tickets .col-right .btn");
+let body = document.querySelector("body");
+
+ticketsBtn.addEventListener("click", function () {
+    body.classList.toggle("active-popup");
+});
+
+let closeBtn = document.querySelector('.footer .popup .close');
+let overlay = document.querySelector('.footer .popup .overlay');
+
+function closePopup() {
+    body.classList.toggle("active-popup");
+}
+
+closeBtn.addEventListener("click", closePopup);
+overlay.addEventListener("click", closePopup);
+
+let date = document.getElementById('date');
+let today = new Date().toLocaleDateString('en-CA');
+date.setAttribute('min', today);
+
+
+const dateEl = document.getElementById('date');
+
+function updateFilled() {
+    dateEl.classList.toggle('filled', !!dateEl.value);
+}
+
+dateEl.addEventListener('input', updateFilled);
+dateEl.addEventListener('change', updateFilled);
+updateFilled();
+
+let minus = document.querySelectorAll('.minus');
+function stepDown() {
+    minus.forEach((item) => {
+        item.addEventListener('click', () => {
+            item.nextElementSibling.stepDown();
+            item.nextElementSibling.matches('.basic')
+                ? localStorage.setItem('basic', item.nextElementSibling.value)
+                : localStorage.setItem('senior', item.nextElementSibling.value);
+        });
+    });
+}
+stepDown();
+
+let plus = document.querySelectorAll('.plus');
+function stepUp() {
+    plus.forEach((item) => {
+        item.addEventListener('click', () => {
+            item.previousElementSibling.stepUp();
+            item.previousElementSibling.matches('.basic')
+                ? localStorage.setItem('basic', item.previousElementSibling.value) + document.querySelector('.plus').previousElementSibling.value
+                : localStorage.setItem('senior', item.previousElementSibling.value);
+        });
+    });
+}
+stepUp();
 
